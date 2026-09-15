@@ -1,0 +1,7 @@
+cell,cluster,CD3D,CD4,MS4A1,LYZ
+cell_001,T_cell,40,22,0,1
+cell_002,T_cell,50,30,0,2
+cell_003,B_cell,0,0,50,1
+cell_004,B_cell,0,0,42,2
+cell_005,Myeloid,0,0,0,61
+cell_006,Myeloid,1,0,0,55

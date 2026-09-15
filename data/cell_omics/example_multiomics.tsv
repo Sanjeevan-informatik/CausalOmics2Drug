@@ -1,0 +1,8 @@
+layer	observation	value
+DNA	EGFR amplification	CN~6
+Epigenome	EGFR promoter accessibility	High
+RNA	EGFR expression	320 TPM
+Protein	EGFR abundance	2.8x control
+Phosphoproteome	pEGFR Y1068	3.4x control
+Metabolome	Lactate	2.2x control
+Phenotype	Proliferation	High

@@ -1,0 +1,6 @@
+gene,tumor_tpm,control_tpm
+TP53,44,125
+MYC,450,60
+EGFR,320,30
+BRCA1,35,87
+MKI67,280,18

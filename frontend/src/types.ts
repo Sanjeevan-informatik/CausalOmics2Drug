@@ -1,0 +1,6 @@
+export const layers = ['genomics','epigenomics','bulk_rna','single_cell','spatial','proteomics','metabolomics'] as const;
+export const labels: Record<string,string> = {genomics:'Genomics',epigenomics:'Epigenomics',bulk_rna:'Bulk RNA',single_cell:'Single-cell RNA',spatial:'Spatial RNA',proteomics:'Proteomics',metabolomics:'Metabolomics'};
+export type Evidence = {id:string;gene:string;layer:string;disease:string;tissue:string;study:string;source:string;observation:string;strength:number;effect:number|null;unit:string;q_value:number|null;cell_type:string;kind:string;action:string;synthetic:boolean;x:number|null;y:number|null};
+export type Dataset = {name:string;evidence:Evidence[];pathways:{id:string;name:string;genes:string[];source:string}[];universe:string[];notes:string[]};
+export type Target = {gene:string;rank:number;score:number;causal_score:number;tier:string;action:string;coverage:number;layers:Record<string,number>;missing:string[];evidence:Evidence[];untested:number;synthetic:boolean};
+export type Result = {dataset:string;fingerprint:string;version:string;targets:Target[];evidence_count:number;warnings:string[];pathways:{id:string;name:string;source:string;measured_genes:string[];hits:string[];q_value:number|null;status:string}[]};
