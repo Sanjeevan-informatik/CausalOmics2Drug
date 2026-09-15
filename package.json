@@ -1,0 +1,1 @@
+{"name":"causalomics2drug-hosting","version":"0.1.0","private":true,"scripts":{"build":"node scripts/build-hosted.mjs"},"packageManager":"npm@11.9.0"}
