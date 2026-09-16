@@ -1,1 +1,10 @@
-{"name":"causalomics2drug-hosting","version":"0.1.0","private":true,"scripts":{"build":"node scripts/build-hosted.mjs"},"packageManager":"npm@11.9.0"}
+{
+  "name": "causalomics2drug-hosting",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-hosted.mjs",
+    "dev": "node frontend/node_modules/vite/bin/vite.js frontend"
+  },
+  "packageManager": "npm@11.9.0"
+}

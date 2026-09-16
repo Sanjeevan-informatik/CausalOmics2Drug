@@ -1,0 +1,12 @@
+id,pair_id,candidate_id,clone_id,sample_id,kind,result,replicates,controls,positive_events,total_events,control_positive,control_total,source,notes
+EXP-001,TX-001,MIHA-01,TCR-01,TX-001-blood-90,tetramer,positive,3,adequate,820,10000,12,10000,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-002,TX-001,MIHA-01,TCR-01,TX-001-blood-90,reexpression,positive,3,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-003,TX-001,MIHA-01,TCR-01,TX-001-blood-90,killing,positive,3,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-004,TX-001,MIHA-01,TCR-01,TX-001-blood-90,hla_blocking,positive,3,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-005,TX-001,MIHA-01,TCR-01,TX-001-blood-90,normal_tissue,negative,3,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-006,TX-001,MIHA-01,TCR-01,TX-001-blood-90,cross_reactivity,not_done,0,not_recorded,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-007,TX-001,MIHA-02,TCR-02,TX-001-blood-90,tetramer,positive,3,adequate,95,10000,8,10000,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-008,TX-001,MIHA-02,TCR-02,TX-001-blood-90,reexpression,positive,1,incomplete,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-009,TX-001,MIHA-05,TCR-03,TX-001-blood-90,tetramer,positive,3,adequate,370,10000,22,10000,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-010,TX-001,MIHA-05,TCR-03,TX-001-blood-90,normal_tissue,positive,3,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.
+EXP-011,TX-001,MIHA-01,TCR-05,TX-001-blood-90,tetramer,positive,1,adequate,,,,,Synthetic teaching fixture; not a measurement or clinical result,Example only; no experiment was performed.

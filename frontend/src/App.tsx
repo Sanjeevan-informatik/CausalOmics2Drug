@@ -1,3 +1,4 @@
+import './style.css';
 import {useEffect,useState} from 'react';
 import {Activity,ArrowRight,Check,Database,Download,FlaskConical,GitBranch,Layers,Search,SlidersHorizontal,Upload} from 'lucide-react';
 import {Dataset,Result,Target,layers,labels} from './types';

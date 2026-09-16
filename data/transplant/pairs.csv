@@ -1,0 +1,3 @@
+id,diagnosis,donor_id,recipient_id,build,donor_hla,recipient_hla,germline_source,source
+TX-001,AML · synthetic longitudinal case,D-001,R-001,GRCh38,HLA-A*02:01;HLA-B*07:02;HLA-C*07:02,HLA-A*02:01;HLA-B*07:02;HLA-C*07:02,nonhematopoietic,Synthetic teaching fixture; not a measurement or clinical result
+TX-002,MDS/AML · synthetic comparison,D-002,R-002,GRCh38,HLA-A*02:01;HLA-B*07:02,HLA-A*02:01;HLA-B*07:02,unknown,Synthetic teaching fixture; not a measurement or clinical result

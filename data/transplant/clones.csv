@@ -1,0 +1,8 @@
+id,pair_id,tra_v,tra_j,tra_cdr3,trb_v,trb_j,trb_cdr3,pairing,productive,source
+TCR-01,TX-001,TRAV12-2,TRAJ33,CAVRDSNYQLIW,TRBV7-9,TRBJ2-7,CASSLGQETQYF,paired,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-02,TX-001,TRAV12-2,TRAJ33,CAVSDRGSTLGRLYF,TRBV7-9,TRBJ2-7,CASSQAGTDTQYF,paired,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-03,TX-001,TRAV12-2,TRAJ33,CAVNAGGTSYGKLTF,TRBV7-9,TRBJ2-7,CASSFSGANTGELFF,paired,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-04,TX-001,TRAV12-2,TRAJ33,CAVKDTDKLIF,TRBV7-9,TRBJ2-7,CASSPGQGYEQYF,paired,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-05,TX-001,,,,TRBV7-9,TRBJ2-7,CASSLGQETQYF,beta_only,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-06,TX-001,TRAV12-2,TRAJ33,CAVRDSNYQLIW,TRBV7-9,TRBJ2-7,CASSQDRDTQYF,ambiguous,true,Synthetic teaching fixture; not a measurement or clinical result
+TCR-07,TX-002,TRAV12-2,TRAJ33,CAVRDSNYQLIW,TRBV7-9,TRBJ2-7,CASSLGQETQYF,paired,true,Synthetic teaching fixture; not a measurement or clinical result

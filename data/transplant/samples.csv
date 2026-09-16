@@ -1,0 +1,19 @@
+id,pair_id,day,compartment,assay,unit,total,origin,origin_method,source
+TX-001-blood-0,TX-001,0,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-blood-30,TX-001,30,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-blood-90,TX-001,90,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-blood-180,TX-001,180,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-blood-365,TX-001,365,blood,bulk_tcr,templates,10000,mixed,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-marrow-30,TX-001,30,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-marrow-90,TX-001,90,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-marrow-180,TX-001,180,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-001-marrow-365,TX-001,365,marrow,single_cell,cells,500,mixed,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-blood-0,TX-002,0,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-blood-30,TX-002,30,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-blood-90,TX-002,90,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-blood-180,TX-002,180,blood,bulk_tcr,templates,10000,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-blood-365,TX-002,365,blood,bulk_tcr,templates,10000,mixed,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-marrow-30,TX-002,30,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-marrow-90,TX-002,90,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-marrow-180,TX-002,180,marrow,single_cell,cells,500,donor,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result
+TX-002-marrow-365,TX-002,365,marrow,single_cell,cells,500,mixed,Illustrative upstream genotype assignment,Synthetic teaching fixture; not a measurement or clinical result

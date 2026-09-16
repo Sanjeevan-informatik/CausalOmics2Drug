@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {projectSchema} from '../src/transplant/schema';
+import {directionalMismatch,rankedCandidates,cloneSeries,cloneChange,wilson,receptorEvidence} from '../src/transplant/analysis';
+import {importAnnotatedVcf,importAirr,replaceTable,csvFor} from '../src/transplant/io';
+const p=projectSchema.parse(JSON.parse(fs.readFileSync('../data/transplant/demo.json','utf8')));
+let checks=0;function check(name:string,fn:()=>void){fn();checks++;console.log('PASS '+name);}
+const c=p.candidates[0];
+check('No-call is unknown, never donor absence',()=>assert.equal(directionalMismatch({...c,donor_gt:'./.'}),'unknown'));
+check('REF-only recipient allele is directional',()=>assert.equal(directionalMismatch({...c,donor_gt:'1|1',recipient_gt:'0|1',target_allele:'REF'}),'recipient_only'));
+check('Reverse mismatch is distinguished',()=>assert.equal(directionalMismatch({...c,donor_gt:'0/1',recipient_gt:'0/0'}),'donor_only'));
+check('Synthetic reference has convergent function',()=>assert.equal(rankedCandidates(p,'TX-001')[0].stage,'functional'));
+check('Unknown germline is review-only',()=>assert.ok(rankedCandidates(p,'TX-002').every(x=>!x.eligible)));
+check('Conflicting controlled killing evidence prevents functional tier',()=>{const q=structuredClone(p);const a=q.assays.find(a=>a.kind==='killing')!;q.assays.push({...a,id:'CONFLICT',result:'negative'});assert.equal(rankedCandidates(q,'TX-001').find(x=>x.candidate.id===a.candidate_id)!.functional,false);assert.equal(receptorEvidence(q,q.clones[0],a.candidate_id).status.killing,'conflicting');});
+check('Different receptors cannot pool functional evidence',()=>{const q=structuredClone(p);q.assays.find(a=>a.kind==='killing')!.clone_id='TCR-02';assert.equal(rankedCandidates(q,'TX-001').find(x=>x.candidate.id===c.id)!.functional,false);});
+check('Beta-only receptor cannot support functional tier',()=>{const q=structuredClone(p);q.clones[0].pairing='beta_only';assert.equal(rankedCandidates(q,'TX-001').find(x=>x.candidate.id===c.id)!.functional,false);});
+check('Missing row remains missing instead of zero',()=>{const s=cloneSeries(p,'TCR-02','marrow','single_cell');assert.equal(s.find(x=>x.sample.day===180)!.frequency,null);});
+check('Zero baseline has no infinite fold',()=>{const s=cloneSeries(p,'TCR-01','blood','bulk_tcr');s[0].frequency=0;assert.equal(cloneChange(s).fold,null);});
+check('Wilson interval reference calculation and invalid denominator',()=>{const ci=wilson(50,100)!;assert.ok(Math.abs(ci[0]-.40383153)<1e-7);assert.ok(Math.abs(ci[1]-.59616847)<1e-7);assert.equal(wilson(1,0),null);});
+check('Cross-pair references rejected',()=>{const q=structuredClone(p);q.assays[0].pair_id='TX-002';assert.equal(projectSchema.safeParse(q).success,false);});
+check('Impossible repertoire totals rejected',()=>{const q=structuredClone(p);q.observations[0].count=1e9;assert.equal(projectSchema.safeParse(q).success,false);});
+check('Duplicate observation rejected',()=>{const q=structuredClone(p);q.observations.push(q.observations[0]);assert.equal(projectSchema.safeParse(q).success,false);});
+check('Annotated VCF has pair-scoped IDs',()=>{const v=importAnnotatedVcf(fs.readFileSync('../data/transplant/annotated-example.vcf','utf8'),'TX-001','D-001','R-001');assert.ok(v.rows.length>0);assert.ok(v.rows[0].id.startsWith('VCF-TX-001-'));});
+check('VCF unknown build rejected',()=>assert.throws(()=>importAnnotatedVcf(fs.readFileSync('../data/transplant/annotated-example.vcf','utf8').replaceAll('GRCh38','GRCh37'),'TX-001','D-001','R-001')));
+check('AIRR pairing and replacement remain explicit',()=>{const r=importAirr(p,fs.readFileSync('../data/transplant/airr-example.tsv','utf8'));assert.ok(r.project.clones.some(x=>x.pairing==='paired'));assert.equal(r.project.assays.length,0);assert.ok(r.summary.clearedAssays>0);});
+check('CSV roundtrip and transactional rejection',()=>{const q=replaceTable(p,'candidates',csvFor(p.candidates));assert.deepEqual(q.candidates,p.candidates);assert.throws(()=>replaceTable(p,'candidates','id,pair_id\nBAD,UNKNOWN'));assert.equal(p.candidates.length,10);});
+check('CSV formulas escaped',()=>assert.ok(csvFor([{source:'=1+1'}]).includes("'=1+1")));
+console.log(`${checks} transplant checks passed`);

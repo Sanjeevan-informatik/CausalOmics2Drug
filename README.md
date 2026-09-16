@@ -1,3 +1,38 @@
+# CausalOmics2Drug · AlloTrace
+
+[Open the live research prototype](https://causalomics2drug.sanjeevanvive.chatgpt.site)
+
+**AlloTrace** adds a donor–recipient transplant immunogenomics workspace for leukemia-directed T-cell research. English/German interface; browser-local analysis; explicitly synthetic demonstration data. Independent software, not affiliated with Charité or Penter Lab.
+
+- Review directional germline mismatches, supplied HLA/peptide predictions and leukemia/normal-tissue expression.
+- Track bulk and single-cell receptors over transplant-relative time with separate assay denominators and missing-data handling.
+- Link tetramer, re-expression, killing, HLA-dependence and specificity evidence to the same receptor and antigen.
+- Inspect supplied immune-escape observations and prepare a manual research shortlist.
+- Import validated JSON/CSV, an annotated VCF subset or a single-cell AIRR subset; export complete study data and fingerprinted reports.
+
+The original seven-omics evidence workspace remains at `/#omics`. No raw WES processing, antigen-specificity prediction, causal clinical validation or therapeutic recommendation is performed. Bundled peptides and outcomes are fictional. This version has not been validated on a patient cohort.
+
+Read [scientific design and current research](docs/transplant/RESEARCH.md), [input contracts](docs/transplant/INPUTS.md) and [Germany deployment considerations](docs/transplant/GERMANY.md). Use approved institutional deployment before handling real patient data.
+
+## Run
+
+```sh
+npm ci --prefix frontend
+npm run build
+# Root dist/ is the browser-local static site.
+# Development: npm run dev
+```
+
+```sh
+npm run test:transplant --prefix frontend
+npm run test:parity --prefix frontend
+python -m pytest backend/tests -q
+```
+
+The original Python FastAPI backend and Docker deployment remain supported. Start with `python -m uvicorn backend.app.main:app`; Docker builds both workspaces. Browser tests run in CI against backend and static-analysis builds.
+
+## Original workspace documentation
+
 # CausalOmics2Drug
 
 **An explainable multi-omics workbench for therapeutic target hypotheses.**

@@ -19,6 +19,7 @@ jobs:
       - run: python -m pytest backend/tests -q
       - run: npm ci --prefix frontend
       - run: npm run test:parity --prefix frontend
+      - run: npm run test:transplant --prefix frontend
       - run: npm run build --prefix frontend
       - run: npx playwright install --with-deps chromium
         working-directory: frontend
