@@ -27,6 +27,11 @@ export function candidateResult(c:Candidate,pair:Pair,assays:Assay[],settings=de
  const offTissue=c.nonhematopoietic_max_tpm===null?'unknown':c.nonhematopoietic_max_tpm>settings.offTissueThreshold?'flag':'low_observed';
  const safetySignal=matches.some(a=>['normal_tissue','cross_reactivity'].includes(a.kind)&&a.result==='positive');
  const reasons:string[]=[];
+ const conflicting=[...new Set(matches.map(a=>a.clone_id+'|'+a.kind))].some(key=>{
+  const records=matches.filter(a=>a.clone_id+'|'+a.kind===key&&a.controls==='adequate'&&a.replicates>=2);
+  return records.some(a=>a.result==='positive')&&records.some(a=>a.result==='negative');
+ });
+ if(conflicting)reasons.push('Conflicting controlled assay outcomes require review');
  if(mismatch!=='recipient_only')reasons.push(mismatch==='unknown'?'No-call: donor absence is unproven':mismatch==='donor_only'?'Reverse mismatch (host-versus-graft direction)':'Target allele shared or absent in recipient');
  if(!quality)reasons.push(missingQc?'Coverage or genotype quality missing':'Coverage or genotype quality below threshold');
  if(!sharedHla)reasons.push('Restricting HLA is not shared by donor and recipient');

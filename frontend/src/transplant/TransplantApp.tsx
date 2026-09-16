@@ -70,7 +70,7 @@ export default function TransplantApp(){
   try{
    if(!c||!clone)throw new Error('Select a candidate and receptor first');
    const a=assaySchema.parse({id:'EXP-'+Array.from(crypto.getRandomValues(new Uint8Array(16)),v=>v.toString(16).padStart(2,'0')).join(''),pair_id:pair.id,candidate_id:c.id,clone_id:clone.id,sample_id:formSample,kind:formKind,result:formResult,replicates:formReplicates,controls:formControls,source:formSource,notes:formNotes});
-   setProject(projectSchema.parse({...project,assays:[...project.assays,a]}));log('assay_added',`${a.id}: ${a.kind} / ${a.result}`);setMessage(t('Evidence record added. Export the study to retain it.','Evidenz hinzugefügt. Zum Speichern die Studie exportieren.'));setError('');setFormSource('');setFormNotes('');
+   setProject(projectSchema.parse({...project,synthetic:false,assays:[...project.assays,a]}));log('assay_added',`${a.id}: ${a.kind} / ${a.result}`);setMessage(t('Evidence record added. Export the study to retain it.','Evidenz hinzugefügt. Zum Speichern die Studie exportieren.'));setError('');setFormSource('');setFormNotes('');
   }catch(e){setError(e instanceof Error?e.message:String(e));}
  }
  const summaryCards=[
