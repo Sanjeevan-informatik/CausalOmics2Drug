@@ -7,7 +7,7 @@ test('missing genotype review and German controls',async({page})=>{
 });
 test('controlled negative assay downgrades functional evidence',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'Validation workbench',exact:true}).click();
- await page.getByRole('combobox',{name:'Assay',exact:true}).selectOption('killing');await page.getByLabel('Outcome',{exact:true}).selectOption('negative');await page.getByLabel('Replicates',{exact:true}).fill('3');await page.getByLabel('Controls',{exact:true}).selectOption('adequate');await page.getByLabel('Source / experiment reference').fill('Synthetic controlled negative QA');
+ await page.getByRole('combobox',{name:'Assay',exact:true}).selectOption('killing');await page.getByRole('combobox',{name:'Outcome',exact:true}).selectOption('negative');await page.getByLabel('Replicates',{exact:true}).fill('3');await page.getByRole('combobox',{name:'Controls',exact:true}).selectOption('adequate');await page.getByLabel('Source / experiment reference').fill('Synthetic controlled negative QA');
  await page.getByRole('button',{name:'Add evidence record'}).click();await expect(page.getByText('conflicting',{exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Study overview',exact:true}).click();await expect(page.getByRole('row').filter({hasText:'MIHA-01'})).toContainText('Binding evidence');
 });

@@ -44,9 +44,11 @@ export default function TransplantApp(){
  const stageLabel=(s:string)=>stages[s][lang==='en'?0:1];
  function activate(p:Project){setProject(p);setPairId(p.pairs[0].id);setCandidateId(p.candidates[0]?.id||'');setCloneId(p.clones[0]?.id||'');setFormSample(p.samples[0]?.id||'');setShortlist([]);setStaged(null);setSearch('');setError('');setMessage(t('Dataset validated and loaded.','Datensatz geprüft und geladen.'));setPage('overview');}
  async function exportReport(){
+  try {
   const input={project,settings},hash=await fingerprint(input);
   saveJson('allotrace-research-report.json',{software:'CausalOmics2Drug / AlloTrace 0.2',purpose:'Research prototype; no clinical decisions',created_at:new Date().toISOString(),input_sha256:hash,input,selected_pair:pair.id,candidate_results:candidates,shortlist,session_events:events,references,limitations:['All supplied assay outcomes require independent review','Session events are not a tamper-proof audit trail','No raw WES alignment, HLA prediction, TCR specificity prediction or clinical validation is performed']});
   log('export','Full input, settings, references and current-pair results exported');
+  }catch(e){setError(e instanceof Error?e.message:String(e));}
  }
  async function upload(file:File){
   setError('');setMessage('');setStaged(null);
@@ -67,7 +69,7 @@ export default function TransplantApp(){
  function saveAssay(){
   try{
    if(!c||!clone)throw new Error('Select a candidate and receptor first');
-   const a=assaySchema.parse({id:'EXP-'+crypto.randomUUID(),pair_id:pair.id,candidate_id:c.id,clone_id:clone.id,sample_id:formSample,kind:formKind,result:formResult,replicates:formReplicates,controls:formControls,source:formSource,notes:formNotes});
+   const a=assaySchema.parse({id:'EXP-'+Array.from(crypto.getRandomValues(new Uint8Array(16)),v=>v.toString(16).padStart(2,'0')).join(''),pair_id:pair.id,candidate_id:c.id,clone_id:clone.id,sample_id:formSample,kind:formKind,result:formResult,replicates:formReplicates,controls:formControls,source:formSource,notes:formNotes});
    setProject(projectSchema.parse({...project,assays:[...project.assays,a]}));log('assay_added',`${a.id}: ${a.kind} / ${a.result}`);setMessage(t('Evidence record added. Export the study to retain it.','Evidenz hinzugefügt. Zum Speichern die Studie exportieren.'));setError('');setFormSource('');setFormNotes('');
   }catch(e){setError(e instanceof Error?e.message:String(e));}
  }
